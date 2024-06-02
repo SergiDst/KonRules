@@ -1,0 +1,188 @@
+<app-menu></app-menu>
+
+<div class="container py-5" style="max-width: 90%;">
+    <div class="container bg-breadcrumb">
+        <div class="container text-center py-5">
+            <h2 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Gestion de capitulos</h2>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-success" id="createCapitulo">Crear Capitulo</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-warning" id="updateCapitulo">Modificar Capitulo</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-danger" id="deleteCapitulo">Eliminar Capitulo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Start -->
+<div class="container-fluid service ">
+    <div class="container">
+        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="sub-style">
+                <h4 class="sub-title px-3 mb-0">Capítulos Vigentes</h4>
+            </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s"
+                *ngFor="let capitulo of capitulosList">
+                <div class="service-item rounded">
+                    <div class="service-img rounded-top">
+                        <img src="img/service-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                    </div>
+                    <div class="service-content rounded-bottom bg-light p-4">
+                        <div class="service-content-inner">
+                            <h5 class="mb-4">{{capitulo.numeroCap}}. {{capitulo.titulo}}</h5>
+                            <p class="mb-4">{{capitulo.numeroArticulos}}</p>
+                            <a (click)="verArticulos(capitulo._id)"
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Ver artículos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Services End -->
+
+<!-- crear capitulo -->
+<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid bckMorado py-3">
+                    <div class="container">
+                        <div class="contact-form">
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control border border-white"
+                                                placeholder="Nro capitulo">
+                                            <label>Numero capitulo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control border border-white"
+                                                placeholder="Titulo">
+                                            <label for="subject">Titulo</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control border border-white"
+                                            placeholder="Nro Articulos">
+                                        <label>Numero de articulos</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border border-white"
+                                            placeholder="Palabras clave">
+                                        <label for="subject">Palabras claves (Hacer logica para separar el
+                                            string)</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control border border-white" placeholder="Articulos"
+                                                style="height: 160px"></textarea>
+                                            <label for="message">Articulos que contiene - mostrar los articulos creados aqui (quitar este textarea y colocar checkbox para seleccionar los articulos a guardar)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-light text-primary w-100 py-3">Subir Capitulo</button>
+                                        <br><br>
+                                        <div class="row justify-content-start">
+                                            <button class="btn btn-danger py-3" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- cambiar capitulo -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid bckMorado py-5">
+                    <div class="contact-form">
+                        <form>
+                            <div class="row g-3">
+                                <p class="text-white">Seleccionar si no se va a modificar</p>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="number" id="numeroArticulo"
+                                            class="form-control border border-white" placeholder="Nro Articulo">
+                                        <label>Numero articulo</label>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkArticulo">
+                                        <label class="form-check-label text-white" for="checkArticulo">
+                                            Deshabilitar Numero de Articulo
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" id="titulo" class="form-control border border-white"
+                                            placeholder="Titulo">
+                                        <label for="subject">Titulo</label>
+                                    </div><br>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkTitulo">
+                                        <label class="form-check-label text-white" for="checkTitulo">
+                                            Deshabilitar Titulo
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <textarea id="contenido" class="form-control border border-white"
+                                            placeholder="Contenido del articulo" style="height: 160px"></textarea>
+                                        <label for="message">Contenido</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkContenido">
+                                        <label class="form-check-label text-white" for="checkContenido">
+                                            Deshabilitar contenido
+                                        </label>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <button class="btn btn-light text-primary w-100 py-3">Modificar</button>
+                                        </div>
+                                        <div class="col">
+                                            <button class="btn btn-danger text-center py-3"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

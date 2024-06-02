@@ -1,0 +1,18 @@
+.bckColor{
+    background-color: #519795;
+}
+
+.btn{
+    background-color: #EEFB03;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.h5, .h4{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.logoA{
+    width: 390px;
+    height: 150px;
+}

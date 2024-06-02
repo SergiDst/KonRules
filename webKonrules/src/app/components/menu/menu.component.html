@@ -1,0 +1,121 @@
+<!-- Topbar Start -->
+<!-- <div class="container-fluid bg-dark px-5 d-none d-lg-block">
+  <div class="row gx-0 align-items-center" style="height: 45px;">
+    <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+      <div class="d-flex flex-wrap">
+        <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A Location</a>
+        <a href="#" class="text-light me-4"><i class="fas fa-phone-alt text-primary me-2"></i>+01234567890</a>
+        <a href="#" class="text-light me-0"><i class="fas fa-envelope text-primary me-2"></i>Example@gmail.com</a>
+      </div>
+    </div>
+    <div class="col-lg-4 text-center text-lg-end">
+      <div class="d-flex align-items-center justify-content-end">
+        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i
+            class="fab fa-facebook-f"></i></a>
+        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i
+            class="fab fa-twitter"></i></a>
+        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i
+            class="fab fa-instagram"></i></a>
+        <a href="#" class="btn btn-light btn-square border rounded-circle nav-fill me-0"><i
+            class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Topbar End -->
+
+
+<!-- Navbar & Hero Start -->
+<div class="container-fluid  p-0">
+  <nav class="navbar navbar-expand-lg navbar-light navColor px-4 px-lg-5 py-3 py-lg-0">
+    <a href="/inicio" class="navbar-brand p-0">
+      <img src="../../../assets/img/KonRules.png" class="logo" alt="Logo" *ngIf="admin !=='1'">
+      <img src="../../../assets/img/KonRules ADMIN.png" class="logoA" alt="Logo" *ngIf="admin =='1'">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+           <a href="/actualizaciones" class="nav-item nav-link active navItem" *ngIf="admin !=='1'">ACTUALIZACIONES</a>
+          </div>
+          <div class="col">
+            <a href="/articulos" class="nav-item nav-link navItem" *ngIf="admin !=='1'">ARTICULOS</a>
+            <a href="/gestionarticulos" class="nav-item nav-link navItem" id="gestArticulo" *ngIf="admin=='1'">Gestion Articulos</a>
+          </div>
+          <div class="col">
+            <a href="/capitulos" class="nav-item nav-link navItem"  *ngIf="admin !=='1'">CAPITULOS</a>
+            <a href="/gestioncapitulos" class="nav-item nav-link navItem" id="gestCapitulo" *ngIf="admin=='1'">Gestion Capitulos</a>
+          </div>
+          <div class="col">
+            <a href="/ejemplo" class="nav-item nav-link navItem" *ngIf="admin !=='1'">EJEMPLOS</a>
+            <a href="/gestionejemplos" class="nav-item nav-link navItem" id="gestEjemplo" *ngIf="admin=='1'">Gestion Ejemplos</a>
+          </div>
+          <div class="col" *ngIf="admin=='1'">
+            <a href="/gestionsugerencias" class="nav-item nav-link navItem">Gestion sugerencias</a>
+          </div>
+        </div>
+      </div>
+      <a (click)="logout()" class="btn btn-primary rounded-pill text-white py-2 px-4 flex-wrap flex-sm-shrink-0" *ngIf="admin=='1'">Salir</a>
+    </div>
+  </nav>
+  
+
+  <!-- <div class="container">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col col-sm-7">
+                <div class="card text-center bg-primary carusel">
+                    <div class="card-header">
+                        <b class="text-dark">PORTAL DE CAMBIOS</b>
+                    </div>
+                    <div class="card-body">
+                        <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to="0" class="active" aria-current="true"
+                                    aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner noticias">
+                                <div class="carousel-item active">
+                                    <img src="../../../assets/img/blog-1.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../assets/img/blog-2.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../assets/img/blog-3.jpg" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                    </div>
+                    <button class="btn btn-warning">DESCUBRELO</button>
+                </div>
+            </div>
+            <div class="col col-sm-4">
+                <img src="../../../assets/img/Kon.png" alt="">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+</div>
+<!-- Navbar & Hero End -->

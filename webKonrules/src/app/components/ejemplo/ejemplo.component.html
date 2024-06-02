@@ -1,0 +1,56 @@
+<app-menu></app-menu>
+
+<!-- Header Start -->
+<div class="container py-5" style="max-width: 90%;">
+    <div class="container py-5">
+    </div>
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5">
+            <h2 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Ejemplos</h2>
+            <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                has been the industry's standard dummy text ever since the 1500s,
+            </p>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+
+<!-- About Start -->
+<div class="container-fluid about bg-light py-5">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center" *ngFor="let ejemplo of ejemploList">
+            <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-img pb-5 ps-5">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/8KgLvUa-3ic?si=gSn-iNbDo7XQ0qu-"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <img src="{{ejemplo.image}}" class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
+                    <div class="about-img-inner">
+                        <img src="https://cdn-icons-png.flaticon.com/256/5650/5650378.png"
+                            class="img-fluid rounded-circle w-100 h-100" alt="Image">
+                    </div>
+                    <div class="about-experience">15 years experience</div>
+                </div>
+            </div>
+            <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">
+                <div class="section-title text-start mb-5">
+                    <h4 class="sub-title pe-3 mb-0">Ejemplo</h4>
+                    <h1 class="display-3 mb-4">{{ejemplo.title}}</h1>
+                    <p class="mb-4">{{ejemplo.descripcion}}</p>
+                    <div class="mb-4">
+                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Refresing to get such a
+                            personal touch.</p>
+                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Duis aute irure dolor in
+                            reprehenderit in voluptate.</p>
+                        <p class="text-secondary"><i class="fa fa-check text-primary me-2"></i> Velit esse cillum dolore
+                            eu fugiat nulla pariatur.</p>
+                    </div>
+                    <a href="#" class="btn btn-primary rounded-pill text-white py-3 px-5">Discover More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->

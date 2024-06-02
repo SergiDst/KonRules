@@ -1,0 +1,66 @@
+<app-menu></app-menu>
+
+<div class="container py-5" style="max-width: 90%;">
+    <div class="container bg-breadcrumb">
+        <div class="container text-center py-5">
+            <h2 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Gestion de Ejemplos</h2>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-success" id="createEjemplo">Crear Ejemplo</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-warning" id="updateEjemplo">Modificar Ejemplo</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-danger" id="deleteEjemplo">Eliminar Ejemplo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid bckRojo py-5">
+                    <div class="contact-form">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control border border-white"
+                                            placeholder="Nro Articulo">
+                                        <label>Numero articulo</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border border-white"
+                                            placeholder="Titulo">
+                                        <label for="subject">Titulo</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control border border-white"
+                                            placeholder="Contenido del articulo" style="height: 160px"></textarea>
+                                        <label for="message">Contenido</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-light text-primary w-100 py-3">Subir articulo</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-danger text-center py-3"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ejemplos creados -->

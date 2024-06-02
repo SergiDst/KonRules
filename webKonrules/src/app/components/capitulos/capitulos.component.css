@@ -1,0 +1,16 @@
+.bckColor{
+    background-color: #572853;
+}
+
+h5, h4, h1{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.footerM{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 999;
+}
