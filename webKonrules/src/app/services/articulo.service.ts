@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,16 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ArticuloService {
-  apiUri = '/api/';
+  apiUrl = 'http://localhost:3000/api';
+
   constructor(private http: HttpClient) { }
 
-  getAllArticulosxCapituloData(idCapitulo: any): Observable<any> {
+  getAllArticulosData(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/articulos`);
+  }
 
-    return this.http.get(this.apiUri+"capitulos/"+idCapitulo, {
-      headers:
-      {
-        'Content-Type': 'application/json'
-      }
+  addArticulo(articuloData: any, verifyToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'access-token': verifyToken
     });
+
+    return this.http.post(this.apiUrl + '/articulo', articuloData, { headers });
   }
 }

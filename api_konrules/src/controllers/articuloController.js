@@ -34,8 +34,13 @@ exports.crearArticulo = async function(req, res) {
     res.status(200).send('Articulo guardado exitosamente!');
   } catch (err) {
     console.log(err);
-    res.status(500).send(err);
+    if (err.name === 'ValidationError') {
+      res.status(400).json({ mensaje: 'Error de validación: ' + err.message });
+    } else {
+      res.status(500).json({ mensaje: 'Hubo un error al guardar el artículo', error: err });
+    }
   }
+  
 };
 
 

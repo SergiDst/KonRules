@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router(); //manejador de rutas de express
 const capituloSchema = require("../models/capitulo");
 const verifyToken = require('./validate_token');
+const mongoose = require('mongoose');
 
 //Admin
 router.post("/capitulos", verifyToken, (req, res) => {
@@ -42,17 +43,7 @@ router.get("/capitulos", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
-router.get("/capitulos/:numeroCap", (req, res) => {
-    capituloSchema.find().populate('articulos')
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
-});
 
-router.get("/capitulos/:id", (req, res) => {
-    capituloSchema.findOne( { _id: req.params.id }).populate('articulos')
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
-});
 
 //Busca todos los capitulos por palabra clave
 router.get("/capitulos/buscar/:palabraClave", verifyToken, (req, res) => {
@@ -60,5 +51,19 @@ router.get("/capitulos/buscar/:palabraClave", verifyToken, (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 });
+router.get('/capitulos/:numeroCap', async (req, res) => {
+    try {
+      const capitulo = await capituloSchema.findOne({ numeroCap: req.params.numeroCap }).populate('articulos');
+      res.json(capitulo);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+  
+  
+    
+  
+  
 
 module.exports = router;
+

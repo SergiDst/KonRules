@@ -5,7 +5,7 @@
             <h2 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Gestion de articulos</h2>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-success" id="createArticulo">Crear Articulo</button>
+                    <button class="btn btn-success" id="createCapitulo">Crear articulo</button>
                 </div>
                 <div class="col">
                     <button class="btn btn-warning" id="updateArticulo">Modificar Articulo</button>
@@ -26,21 +26,20 @@
             </div>
         </div>
         <div class="row g-4 justify-content-center">
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s"
-                *ngFor="let articulo of articulosList">
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let articulo of articulosList">
                 <div class="service-item rounded">
-                    <div class="service-img rounded-top">
-                        <img src="img/service-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                  <div class="service-img rounded-top">
+                    <img src="img/service-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                  </div>
+                  <div class="service-content rounded-bottom bg-light p-4">
+                    <div class="service-content-inner">
+                      <h5 class="mb-4">{{articulo.titulo}}</h5>
+                      <p class="mb-4">{{articulo.contenido}}</p>
+                      <button class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" id="btnArticulo">aaa</button>
                     </div>
-                    <div class="service-content rounded-bottom bg-light p-4">
-                        <div class="service-content-inner">
-                            <h5 class="mb-4">{{articulo.titulo}}</h5>
-                            <p class="mb-4">{{articulo.contenido}}</p>
-                            <button class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" id="btnArticulo">aaa</button>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
 
 
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
@@ -53,48 +52,61 @@
 <!-- crear articulo -->
 <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="container-fluid bckAzul py-5">
-                    <div class="contact-form">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-lg-12 col-xl-6">
-                                    <div class="form-floating">
-                                        <input type="number" min="0" step="1" class="form-control border border-white"
-                                            placeholder="Nro Articulo">
-                                        <label>Numero articulo</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border border-white"
-                                            placeholder="Titulo">
-                                        <label>Titulo</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control border border-white"
-                                            placeholder="Contenido del articulo" style="height: 160px"></textarea>
-                                        <label>Contenido</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-light text-primary w-100 py-3">Subir articulo</button>
-                                    <br>
-                                    <br>
-                                    <button class="btn btn-danger text-center py-3"
-                                        data-bs-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </form>
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="container-fluid bckMorado py-3">
+            <div class="container">
+              <div class="contact-form">
+                <form (ngSubmit)="onSubmit()" #articuloForm="ngForm">
+                  <div class="row g-3">
+                    <div class="col-lg-12 col-xl-6">
+                      <div class="form-floating">
+                        <input type="number" class="form-control border border-white" [(ngModel)]="newArticulo.numeroCap" name="numeroCap" placeholder="Nro capítulo" required>
+                        <label>Número capítulo</label>
+                      </div>
                     </div>
-                </div>
+                    <div class="col-lg-12 col-xl-6">
+                      <div class="form-floating">
+                        <input type="number" class="form-control border border-white" [(ngModel)]="newArticulo.numeroArticulo" name="numeroArticulo" placeholder="Nro artículo" required>
+                        <label>Número artículo</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-floating">
+                        <input type="text" class="form-control border border-white" [(ngModel)]="newArticulo.titulo" name="titulo" placeholder="Título" required>
+                        <label for="titulo">Título</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-floating">
+                        <textarea class="form-control border border-white" [(ngModel)]="newArticulo.contenido" name="contenido" placeholder="Contenido" style="height: 160px" required></textarea>
+                        <label for="contenido">Contenido</label>
+                      </div>
+                    </div>
+                    <!-- Agregar más campos según sea necesario -->
+                    <div class="col-12">
+                      <div class="form-floating">
+                        <input type="text" class="form-control border border-white" [(ngModel)]="verifyToken" name="verifyToken" placeholder="Verify Token" required>
+                        <label for="verifyToken">Verify Token</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-light text-primary w-100 py-3">Subir Artículo</button>
+                      <br><br>
+                      <div class="row justify-content-start">
+                        <button type="button" class="btn btn-danger py-3" data-bs-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
 
 <!-- cambiar articulo -->
 <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">

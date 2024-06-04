@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,19 +6,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CapituloService {
-  apiUri = '/api/';
-  constructor(private http: HttpClient) { }
+  apiUrl = 'http://localhost:3000/api';
 
-  getAllCapitulosData(token: any): Observable<any> {
+  constructor(private http: HttpClient) {}
 
-    return this.http.get(this.apiUri+"capitulos", {
-      headers:
-      {
+  getAllCapitulosData(token: string | null): Observable<any> {
+    return this.http.get(this.apiUrl + '/capitulos', {
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
         accessToken: `${token}`
-      }
+      })
     });
   }
 
- 
+  addCapitulo(capitulo: any, verifyToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'access-token': verifyToken
+    });
+
+    return this.http.post(this.apiUrl + '/capitulos', capitulo, { headers });
+  }
 }
