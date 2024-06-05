@@ -2,46 +2,52 @@
   <img src="../../../assets/img/KonRules ADMIN.png" alt="KonRules ADMIN" class="mx-auto d-block logoA">
 </header>
 <div class="container-fluid bckColor">
-<div class="container">
-  <!-- Outer Row -->
-  <div class="row justify-content-center">
+  <div class="container">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
 
-    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="col-xl-10 col-lg-12 col-md-9">
 
-      <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0" style="border: 3px solid black; border-radius: 10px;">
-          <!-- Nested Row within Card Body -->
-          <div class="row">
-            <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4"><B>INICIAR SESION</B></h1>
-            </div>
-            <div class="container text-center">
-              <div class="row">
-                <div class="row justify-content-md-center">
-                  <div class="col col-6">
-                    <div class="p-5">
-                      <h1 class="h5 text-gray-900 mb-4"><b>USUARIO:</b></h1>
-                      <br>
-                      <h1 class="h5 text-gray-900 mb-4"><b>CONTRASEÑA:</b></h1>
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0" style="border: 3px solid black; border-radius: 10px;">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4"><B>INICIAR SESION</B></h1>
+              </div>
+              <div class="container text-center">
+                <div class="row">
+                  <div class="row justify-content-md-center">
+                    <div class="col col-6">
+                      <div class="p-5">
+                        <h1 class="h5 text-gray-900 mb-4"><b>USUARIO:</b></h1>
+                        <br>
+                        <h1 class="h5 text-gray-900 mb-4"><b>CONTRASEÑA:</b></h1>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col col-6">
-                    <div class="p-5">
-                      <form class="user" (ngSubmit)="onLogin(formLogin)" #formLogin="ngForm">
-                        <div class="form-group">
-                          <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                            aria-describedby="emailHelp" name="correo" ngModel style="border: 3px solid black; border-radius: 10px;">
-                        </div>
-                        <br>
-                        <div class="form-group">
-                          <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                            name="clave" ngModel autocomplete="on" style="border: 3px solid black; border-radius: 10px;">
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-warning btn-user btn-block">
-                          ENTRAR
-                        </button>
-                      </form>
+                    <div class="col col-6">
+                      <div class="p-5">
+                        <form class="user" (ngSubmit)="onLogin(formLogin)" #formLogin="ngForm">
+                          <div class="form-group">
+                            <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                              aria-describedby="emailHelp" name="correo" ngModel
+                              style="border: 3px solid black; border-radius: 10px;">
+                          </div>
+                          <br>
+                          <div class="form-group">
+                            <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                              name="clave" ngModel autocomplete="on"
+                              style="border: 3px solid black; border-radius: 10px;">
+                          </div>
+                          <br>
+                          <button type="submit" class="btn btn-warning btn-user btn-block">
+                            ENTRAR
+                          </button>
+
+                          <p><a href="/signup">Registrarse</a></p>
+                          <hr>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -52,5 +58,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>
