@@ -132,6 +132,7 @@ export class GestionarticulosComponent implements OnInit {
         this.articuloService.getAllArticulosData().subscribe(
           (data: any[]) => {
             this.articulosList = data;
+            
           },
           (error) => {
             console.error('Error fetching articles', error);

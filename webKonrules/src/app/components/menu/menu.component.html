@@ -39,9 +39,6 @@
       <div class="container text-center">
         <div class="row">
           <div class="col">
-           <a href="/actualizaciones" class="nav-item nav-link active navItem" *ngIf="admin !=='1'">ACTUALIZACIONES</a>
-          </div>
-          <div class="col">
             <a href="/articulos" class="nav-item nav-link navItem" *ngIf="admin !=='1'">ARTICULOS</a>
             <a href="/gestionarticulos" class="nav-item nav-link navItem" id="gestArticulo" *ngIf="admin=='1'">Gestion Articulos</a>
           </div>
@@ -50,7 +47,6 @@
             <a href="/gestioncapitulos" class="nav-item nav-link navItem" id="gestCapitulo" *ngIf="admin=='1'">Gestion Capitulos</a>
           </div>
           <div class="col">
-            <a href="/ejemplo" class="nav-item nav-link navItem" *ngIf="admin !=='1'">EJEMPLOS</a>
             <a href="/gestionejemplos" class="nav-item nav-link navItem" id="gestEjemplo" *ngIf="admin=='1'">Gestion Ejemplos</a>
           </div>
           <div class="col" *ngIf="admin=='1'">

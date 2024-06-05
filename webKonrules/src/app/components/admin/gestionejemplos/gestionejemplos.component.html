@@ -9,15 +9,38 @@
                     <button class="btn btn-success" id="createEjemplo">Crear Ejemplo</button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-warning" id="updateEjemplo">Modificar Ejemplo</button>
+                    <button class="btn btn-warning" id="updateCapitulo">Modificar Ejemplo</button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-danger" id="deleteEjemplo">Eliminar Ejemplo</button>
+                    <button class="btn btn-danger" id="deleteArticulo">Eliminar Capitulo</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+      <div class="row g-4 justify-content-center">
+        <!-- Iterar sobre cada ejemplo en la lista de ejemplos -->
+        <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" *ngFor="let ejemplo of ejemplos; let i = index" [attr.data-wow-delay]="0.1 * i + 's'">
+          <div class="service-item rounded">
+            <div class="service-img rounded-top">
+              <img [src]="ejemplo.image" class="img-fluid rounded-top w-100" alt="">
+            </div>
+            <div class="service-content rounded-bottom bg-light p-4">
+              <div class="service-content-inner">
+                <h5 class="mb-4">{{ ejemplo.title }}</h5>
+                <p class="mb-4">{{ ejemplo.descripcion }}</p>
+                <!-- Si tienes un enlace en el ejemplo, puedes agregarlo aquí -->
+                <a *ngIf="ejemplo.video" [href]="ejemplo.video" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Ver Video</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -25,34 +48,43 @@
             <div class="modal-body">
                 <div class="container-fluid bckRojo py-5">
                     <div class="contact-form">
-                        <form>
+                        <form (ngSubmit)="onSubmit()" #exampleForm="ngForm">
                             <div class="row g-3">
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
                                         <input type="number" class="form-control border border-white"
-                                            placeholder="Nro Articulo">
-                                        <label>Numero articulo</label>
+                                            placeholder="Nro Articulo" [(ngModel)]="numeroArticulo"
+                                            name="numeroArticulo" required>
+                                        <label for="numeroArticulo">Numero articulo</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control border border-white"
-                                            placeholder="Titulo">
-                                        <label for="subject">Titulo</label>
+                                        <input type="text" class="form-control border border-white" placeholder="Titulo"
+                                            [(ngModel)]="title" name="title" required>
+                                        <label for="title">Titulo</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control border border-white"
-                                            placeholder="Contenido del articulo" style="height: 160px"></textarea>
-                                        <label for="message">Contenido</label>
+                                            placeholder="Contenido del articulo" style="height: 160px"
+                                            [(ngModel)]="descripcion" name="descripcion" required></textarea>
+                                        <label for="descripcion">Contenido</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-light text-primary w-100 py-3">Subir articulo</button>
-                                    <br>
-                                    <br>
-                                    <button class="btn btn-danger text-center py-3"
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border border-white"
+                                            placeholder="URL de la imagen" [(ngModel)]="image" name="image" required>
+                                        <label for="image">URL de la imagen</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-light text-primary w-100 py-3"
+                                        [disabled]="!exampleForm.form.valid">Subir articulo</button>
+                                    <br><br>
+                                    <button type="button" class="btn btn-danger text-center py-3"
                                         data-bs-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
@@ -62,5 +94,111 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Ejemplos creados -->
+
+
+<div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid bckMorado py-5">
+                    <div class="contact-form">
+                        <form (ngSubmit)="onUpdate()" #updateForm="ngForm">
+                            <div class="row g-3">
+                                <p class="text-white">Seleccionar si no se va a modificar</p>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="number" id="numeroArticulo"
+                                            class="form-control border border-white" [(ngModel)]="numeroArticulo"
+                                            name="numeroArticulo" placeholder="Nro Articulo" required>
+                                        <label>Numero artículo que desea actualizar</label>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" id="title" class="form-control border border-white"
+                                            [(ngModel)]="updatedArticle.title" name="title" placeholder="Título">
+                                        <label for="title">Nuevo Título</label>
+                                    </div><br>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" id="descripcion" class="form-control border border-white"
+                                            [(ngModel)]="updatedArticle.descripcion" name="descripcion"
+                                            placeholder="Descripción">
+                                        <label for="descripcion">Nueva Descripción</label>
+                                    </div><br>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" id="image" class="form-control border border-white"
+                                            [(ngModel)]="updatedArticle.image" name="image" placeholder="Imagen URL">
+                                        <label for="image">Nueva URL de la Imagen</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <br><br><br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit"
+                                                class="btn btn-light text-primary w-100 py-3">Modificar</button>
+                                        </div>
+                                        <div class="col">
+                                            <button type="button" class="btn btn-danger text-center py-3"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid bckAzul py-3">
+                    <div class="contact-form">
+                        <!-- Formulario de Eliminación -->
+                        <form (ngSubmit)="onDelete()">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border border-white"
+                                            [(ngModel)]="deleteExample.title" name="title"
+                                            placeholder="Título del Ejemplo" required>
+                                        <label>Título del Ejemplo</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-danger w-100 py-3">Eliminar Ejemplo</button>
+                                    <br><br>
+                                    <button type="button" class="btn btn-success py-3"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ejemplos creados -->

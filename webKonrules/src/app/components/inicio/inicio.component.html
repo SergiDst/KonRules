@@ -39,6 +39,31 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
+  <div class="container-fluid service py-5">
+    <div class="container py-5">
+      <div class="row g-4 justify-content-center">
+        <!-- Iterar sobre cada ejemplo en la lista de ejemplos -->
+        <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" *ngFor="let ejemplo of ejemplos; let i = index" [attr.data-wow-delay]="0.1 * i + 's'">
+          <div class="service-item rounded">
+            <div class="service-img rounded-top">
+              <img [src]="ejemplo.image" class="img-fluid rounded-top w-100" alt="">
+            </div>
+            <div class="service-content rounded-bottom bg-light p-4">
+              <div class="service-content-inner">
+                <h5 class="mb-4">{{ ejemplo.title }}</h5>
+                <p class="mb-4">{{ ejemplo.descripcion }}</p>
+                <!-- Si tienes un enlace en el ejemplo, puedes agregarlo aquí -->
+                <a *ngIf="ejemplo.video" [href]="ejemplo.video" class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Ver Video</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
 <footer class="text-center footerM" style="background-color:#509593;">
 </footer>
     
