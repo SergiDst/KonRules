@@ -3,47 +3,35 @@
     <div class="container py-5">        
     </div>
 
-    <div class="row">
-        <div class="col-8"><h1>(Nombre del capitulo)</h1></div>
-        <div class="col-4"><form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="#Capitulo" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form></div>
-      </div>
 
-      <div class="card text-center">
-        <div class="card-header">
-          <ul class="nav nav-pills card-header-pills">
-            <!-- los nav-item aumentan o disminuyen segun la cantidad de articulos que contenga el capitulo -->
-            <li class="nav-item col">
-                <button class="btn btn-outline-primary" id="Articulo1">Articulo x1</button>
-            </li>
-            <li class="nav-item col">
-                <button class="btn btn-outline-primary" id="Articulo2">Articulo x2</button>
-            </li>
-            <li class="nav-item col">
-                <button class="btn btn-outline-primary" id="Articulo3">Articulo x3</button>
-            </li>
-            <li class="nav-item col">
-                <button class="btn btn-outline-primary" id="Articulo1">Articulo x1</button>
-            </li>
-            <li class="nav-item col">
-                <button class="btn btn-outline-primary" id="Articulo2">Articulo x2</button>
-            </li>
-            <li class="nav-item col">
-                <button class="btn btn-outline-primary" id="Articulo3">Articulo x3</button>
-            </li>
-            <li class="nav-item col">
-                <button class="btn btn-outline-primary" id="Articulo3">Articulo x1</button>
-            </li>
-          </ul>
-        </div>
-        <div class="card-body bckColor">
-          <h5 class="text-light">(Nombre del articulo, sacarlo de la base de datos)</h5>
-          <p class="text-light">(Texto del articulo, sacarlo de la base de datos)</p>
-        </div>
-      </div>
 
+    <div class="container-fluid service ">
+      <div class="container">
+          <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+              <div class="sub-style">
+                  <h4 class="sub-title px-3 mb-0">Capítulos Vigentes</h4>
+              </div>
+          </div>
+          <div class="row g-4 justify-content-center">
+              <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s"
+                  *ngFor="let capitulo of capitulosList">
+                  <div class="service-item rounded">
+                      <div class="service-img rounded-top">
+                          <img src="img/service-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                      </div>
+                      <div class="service-content rounded-bottom bg-light p-4">
+                          <div class="service-content-inner">
+                              <h5 class="mb-4">{{capitulo.numeroCap}}. {{capitulo.titulo}}</h5>
+                              <p class="mb-4">{{capitulo.numeroArticulos}}</p>
+                              <a (click)="verArticulos(capitulo.numeroCap)"
+                                  class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Ver artículos</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
       <footer class="text-center footerM" style="background-color:#509593;">
     </footer>
 </div>

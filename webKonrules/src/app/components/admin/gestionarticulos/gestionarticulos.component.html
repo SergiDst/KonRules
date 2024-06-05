@@ -5,7 +5,7 @@
             <h2 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Gestion de articulos</h2>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-success" id="createCapitulo">Crear articulo</button>
+                    <button class="btn btn-success" id="createArticulo">Crear Articulo</button>
                 </div>
                 <div class="col">
                     <button class="btn btn-warning" id="updateArticulo">Modificar Articulo</button>
@@ -26,20 +26,21 @@
             </div>
         </div>
         <div class="row g-4 justify-content-center">
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let articulo of articulosList">
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s"
+                *ngFor="let articulo of articulosList">
                 <div class="service-item rounded">
-                  <div class="service-img rounded-top">
-                    <img src="img/service-1.jpg" class="img-fluid rounded-top w-100" alt="">
-                  </div>
-                  <div class="service-content rounded-bottom bg-light p-4">
-                    <div class="service-content-inner">
-                      <h5 class="mb-4">{{articulo.titulo}}</h5>
-                      <p class="mb-4">{{articulo.contenido}}</p>
-                      <button class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" id="btnArticulo">aaa</button>
+                    <div class="service-img rounded-top">
+                        <img src="img/service-1.jpg" class="img-fluid rounded-top w-100" alt="">
                     </div>
-                  </div>
+                    <div class="service-content rounded-bottom bg-light p-4">
+                        <div class="service-content-inner">
+                            <h5 class="mb-4">{{articulo.titulo}}</h5>
+                            <p class="mb-4">{{articulo.contenido}}</p>
+                            <button class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2" id="btnArticulo">aaa</button>
+                        </div>
+                    </div>
                 </div>
-              </div>
+            </div>
 
 
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
@@ -106,7 +107,6 @@
       </div>
     </div>
   </div>
-  
 
 <!-- cambiar articulo -->
 <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
@@ -115,62 +115,43 @@
             <div class="modal-body">
                 <div class="container-fluid bckAzul py-5">
                     <div class="contact-form">
-                        <form>
+                        <form (ngSubmit)="onUpdate()">
                             <div class="row g-3">
                                 <p class="text-white">Seleccionar si no se va a modificar</p>
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="number" id="numeroArticulo"
-                                            class="form-control border border-white" placeholder="Nro Articulo">
+                                        <input type="number" id="numeroArticulo" class="form-control border border-white"
+                                            placeholder="Nro Articulo" [(ngModel)]="updatedArticulo.numeroArticulo" name="numeroArticulo">
                                         <label>Numero articulo</label>
                                     </div>
                                     <br>
                                 </div>
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkArticulo">
-                                        <label class="form-check-label text-white" for="checkArticulo">
-                                            Deshabilitar Numero de Articulo
-                                        </label>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="row g-3">
                                 <div class="col">
                                     <div class="form-floating">
                                         <input type="text" id="titulo" class="form-control border border-white"
-                                            placeholder="Titulo">
+                                            placeholder="Titulo" [(ngModel)]="updatedArticulo.titulo" name="titulo">
                                         <label for="subject">Titulo</label>
                                     </div><br>
                                 </div>
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkTitulo">
-                                        <label class="form-check-label text-white" for="checkTitulo">
-                                            Deshabilitar Titulo
-                                        </label>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="row g-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <textarea id="contenido" class="form-control border border-white"
-                                            placeholder="Contenido del articulo" style="height: 160px"></textarea>
+                                        <textarea id="contenido" class="form-control border border-white" name="contenido"
+                                            placeholder="Contenido del articulo" style="height: 160px" [(ngModel)]="updatedArticulo.contenido"></textarea>
                                         <label for="message">Contenido</label>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkContenido">
-                                        <label class="form-check-label text-white" for="checkContenido">
-                                            Deshabilitar contenido
-                                        </label>
-                                    </div>
+                                    
                                     <br><br><br>
                                     <div class="row">
                                         <div class="col">
-                                            <button class="btn btn-light text-primary w-100 py-3">Modificar</button>
+                                            <button type="submit" class="btn btn-light text-primary w-100 py-3">Modificar</button>
                                         </div>
                                         <div class="col">
                                             <button class="btn btn-danger text-center py-3"
@@ -187,6 +168,7 @@
     </div>
 </div>
 
+
 <!-- eliminar articulo -->
 <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -194,17 +176,22 @@
             <div class="modal-body">
                 <div class="container-fluid bckAzul py-3">
                     <div class="contact-form">
-                        <form>
+                        <form (submit)="onDelete()">
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control border border-white" placeholder="Articulos"
-                                            style="height: 160px"></textarea>
-                                        <label for="message">Puede ser un aviso para confirmar la eliminacion</label>
+                                        <input type="number" id="numeroArticuloDelete" name="numeroArticulo" class="form-control border border-white" placeholder="Número del Artículo" [(ngModel)]="deleteArt.numeroArticulo">
+                                        <label for="numeroArticulo">Número del Artículo</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-danger text-primary w-100 py-3">Eliminar Capitulo</button>
+                                    <div class="form-floating">
+                                        <input type="password" id="verifyToken" name="verifyToken" class="form-control border border-white" placeholder="Verify Token" [(ngModel)]="verifyToken">
+                                        <label for="verifyToken">Verify Token</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-danger text-primary w-100 py-3">Eliminar Artículo</button>
                                     <br><br>
                                     <button class="btn btn-success py-3" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
@@ -216,4 +203,5 @@
         </div>
     </div>
 </div>
+
 <!-- Services End -->

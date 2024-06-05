@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
-import { LoginComponent } from './authentication/login/login.component';
-import { SignupComponent } from './authentication/signup/signup.component';
+import { LoginComponent } from '../app/authentication/login/login.component';
+import { SignupComponent } from '../app/authentication/signup/signup.component';
 import { AuthenticationService } from './services/authentication.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -18,10 +18,10 @@ import { InicioadminComponent } from './components/admin/inicioadmin/inicioadmin
 import { GestionarticulosComponent } from './components/admin/gestionarticulos/gestionarticulos.component';
 import { GestionsugerenciasComponent } from './components/admin/gestionsugerencias/gestionsugerencias.component';
 import { GestioncapitulosComponent } from './components/admin/gestioncapitulos/gestioncapitulos.component';
-import { VerArticulosComponent } from './components/ver-articulos/ver-articulos.component';
 import { CapitulosComponent } from './components/capitulos/capitulos.component';
 import { GestionejemplosComponent } from './components/admin/gestionejemplos/gestionejemplos.component';
 import { ActualizacionesComponent } from './components/actualizaciones/actualizaciones.component';
+import { ArticulosComponent } from './components/articulos/articulos.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +36,10 @@ import { ActualizacionesComponent } from './components/actualizaciones/actualiza
     GestionarticulosComponent,
     GestionsugerenciasComponent,
     GestioncapitulosComponent,
-    VerArticulosComponent,
     CapitulosComponent,
     GestionejemplosComponent,
     ActualizacionesComponent,
+    ArticulosComponent,
   ],
   imports: [
     BrowserModule,

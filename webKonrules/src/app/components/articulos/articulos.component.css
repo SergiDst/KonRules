@@ -1,0 +1,27 @@
+.bckColor{
+    background-color: #572853;
+}
+
+h5, h4, h1{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.footerM{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 999;
+}
+
+.cont-principal{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y)* -1);
+    margin-right: calc(var(--bs-gutter-x) / -2);
+    margin-left: calc(var(--bs-gutter-x) / -2);
+}
+

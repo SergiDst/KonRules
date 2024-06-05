@@ -13,27 +13,36 @@ router.post("/capitulos", verifyToken, (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 //Actualiza un capitulo buscado por el numero del capitulo
-router.put("/capitulos/:numeroCap", verifyToken, (req, res) => {
+router.put("/capitulos/:numeroCap", (req, res) => {
     const { numeroCap } = req.params;
-    const { titulo, numeroArticulos, fecha } = req.body;
+    const { titulo, numeroArticulos, palabrasClave } = req.body;
     capituloSchema.updateOne({ numeroCap: numeroCap }, {
-        $set: { numeroCap, titulo, numeroArticulos, fecha }
+        $set: { numeroCap, titulo, numeroArticulos, palabrasClave }
     })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+
 //elimina el capitulo por id
-router.delete("/capitulos/:id",verifyToken, (req, res) => {
-    const { id } = req.params;
-    capituloSchema
-        .findByIdAndDelete(id)
+router.delete("/capitulos/:numeroCap", verifyToken, (req, res) => {
+    const { numeroCap } = req.params;
+
+    // Si el middleware de verificación de token llega aquí sin lanzar un error, significa que el token es válido
+    // Puedes proceder con la eliminación del capítulo
+
+    capituloSchema.findOneAndDelete({ numeroCap: numeroCap })
         .then((data) => {
-            res.json(data);
+            if (data) {
+                res.json(data);
+            } else {
+                res.status(404).json({ message: "Capítulo no encontrado" });
+            }
         })
         .catch((error) => {
-            res.json({ message: error });
+            res.status(500).json({ message: "Error al eliminar el capítulo", error });
         });
 });
+
 
 //Peticiones del usuario
 

@@ -12,7 +12,7 @@
                     <button class="btn btn-warning" id="updateCapitulo">Modificar Capitulo</button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-danger" id="deleteCapitulo">Eliminar Capitulo</button>
+                    <button class="btn btn-danger" id="deleteArticulo">Eliminar Capitulo</button>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         <div class="service-content-inner">
                             <h5 class="mb-4">{{capitulo.numeroCap}}. {{capitulo.titulo}}</h5>
                             <p class="mb-4">{{capitulo.numeroArticulos}}</p>
-                            <a (click)="verArticulos(capitulo.numeroCap)"
+                            <a (click)="verArticulos(capitulo._id)"
                                 class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Ver artículos</a>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
       </div>
     </div>
   </div>
-  
+
 <!-- cambiar capitulo -->
 <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -113,66 +113,48 @@
             <div class="modal-body">
                 <div class="container-fluid bckMorado py-5">
                     <div class="contact-form">
-                        <form>
+                        <form (ngSubmit)="onUpdate()" #updateForm="ngForm">
                             <div class="row g-3">
                                 <p class="text-white">Seleccionar si no se va a modificar</p>
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="number" id="numeroArticulo"
-                                            class="form-control border border-white" placeholder="Nro Articulo">
-                                        <label>Numero capitulo</label>
+                                        <input type="number" id="numeroCap" class="form-control border border-white" [(ngModel)]="updateChapter.numeroCap" name="numeroCap" placeholder="Nro Articulo" required>
+                                        <label>Numero capitulo que desea actualizar</label>
                                     </div>
                                     <br>
                                 </div>
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkArticulo">
-                                        <label class="form-check-label text-white" for="checkArticulo">
-                                            Deshabilitar Numero de Articulo
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row g-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <input type="text" id="titulo" class="form-control border border-white"
-                                            placeholder="Titulo">
-                                        <label for="subject">Titulo</label>
+                                        <input type="text" id="titulo" class="form-control border border-white" [(ngModel)]="updateChapter.titulo" name="titulo" placeholder="Titulo">
+                                        <label for="subject">Nuevo Titulo</label>
                                     </div><br>
                                 </div>
+                            </div>
+                            <div class="row g-3">
                                 <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkTitulo">
-                                        <label class="form-check-label text-white" for="checkTitulo">
-                                            Deshabilitar Titulo
-                                        </label>
-                                    </div>
+                                    <div class="form-floating">
+                                        <input type="text" id="palabrasClave" class="form-control border border-white" [(ngModel)]="updateChapter.palabrasClave" name="palabrasClave" placeholder="palabras clave">
+                                        <label for="subject">Palabras clave separadas por comas</label>
+                                    </div><br>
                                 </div>
                             </div>
                             <div class="row g-3">
                                 <div class="col">
                                     <div class="form-floating">
-                                        <textarea id="contenido" class="form-control border border-white"
-                                            placeholder="Contenido del articulo" style="height: 160px"></textarea>
-                                        <label for="message">Contenido</label>
+                                        <input type="number" id="numeroArticulos" class="form-control border border-white" [(ngModel)]="updateChapter.numeroArticulos" name="numeroArticulos" placeholder="Numero Articulos">
+                                        <label for="message">Número de artículos</label>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkContenido">
-                                        <label class="form-check-label text-white" for="checkContenido">
-                                            Deshabilitar contenido
-                                        </label>
-                                    </div>
                                     <br><br><br>
                                     <div class="row">
                                         <div class="col">
-                                            <button class="btn btn-light text-primary w-100 py-3">Modificar</button>
+                                            <button type="submit" class="btn btn-light text-primary w-100 py-3">Modificar</button>
                                         </div>
                                         <div class="col">
-                                            <button class="btn btn-danger text-center py-3"
-                                            data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-danger text-center py-3" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -185,6 +167,36 @@
     </div>
 </div>
 
-
-<!-- modal crear capitulo -->
-
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid bckAzul py-3">
+                    <div class="contact-form">
+                        <form (ngSubmit)="onDelete()">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control border border-white" [(ngModel)]="deleteChapter.numeroCap" name="numeroCap" placeholder="Número Capítulo" required>
+                                        <label>Número Capítulo</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border border-white" [(ngModel)]="verifyToken" name="verifyToken" placeholder="Verify Token" required>
+                                        <label for="verifyToken">Verify Token</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-danger w-100 py-3">Eliminar Capítulo</button>
+                                    <br><br>
+                                    <button type="button" class="btn btn-success py-3" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

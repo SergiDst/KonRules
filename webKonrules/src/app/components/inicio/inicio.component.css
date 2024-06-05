@@ -6,3 +6,12 @@
     height: 50px;
     z-index: 999;
 }
+.w-100 {
+    width: 100% !important;
+    margin-top: 7vh;
+}
+
+.carousel-caption{
+    background: #5d5d5d69;
+    border-radius: 10%;
+}

@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+<div class="container" style="max-width: 90%;">
+    <div class="container py-5">        
+    </div>
+
+    <div class="row">
+        <div class="col-8"><h1>{{infoCapList.titulo}}</h1></div>
+        <div class="col-4">
+          <form class="d-flex" role="search" (submit)="verArticuloDeseado(inputNumeroArticulo.value); $event.preventDefault()">
+            <input #inputNumeroArticulo class="form-control me-2" type="number" placeholder="#Capitulo" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
+      <div class="row">
+        <div class="col-4">
+          <div id="list-example" class="list-group" data-wow-delay="0.1s">
+            <a class="list-group-item list-group-item-action"  *ngFor="let articulo of articulosList; let i = index" href="#list-item-{{i+1}}">{{articulo.titulo}}</a>
+          </div>
+        </div>
+        <div class="col-8">
+          <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" data-bs-offset="1500" tabindex="0" style="max-height: 500px; overflow-y: auto;">
+            <div  data-wow-delay="0.1s" *ngFor="let articulo of articulosList; let i = index" style="min-height: 500px;">
+              <h4 id="list-item-{{i+1}}">{{articulo.titulo}}</h4>
+              <p>{{articulo.contenido}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="text-center footerM" style="background-color:#509593;">
+    </footer>
+</div>

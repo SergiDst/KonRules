@@ -17,6 +17,15 @@ export class GestioncapitulosComponent implements OnInit {
     palabrasClave: ''
   };
   verifyToken: string = '';
+  updateChapter: any = {
+    numeroCap: '',
+    titulo: '',
+    numeroArticulos: '',
+    palabrasClave: ''
+  };
+  deleteChapter: any = {
+    numeroCap: ''
+  };
 
   constructor(
     private capituloService: CapituloService,
@@ -69,6 +78,51 @@ export class GestioncapitulosComponent implements OnInit {
       }
     );
   }
+  onUpdate() {
+    const updatedChapter = {
+      titulo: this.updateChapter.titulo,
+      numeroArticulos: this.updateChapter.numeroArticulos,
+      palabrasClave: this.updateChapter.palabrasClave.split(',').map((palabra: string) => palabra.trim())
+    };
+  
+    this.capituloService.updateCapitulo(this.updateChapter.numeroCap, updatedChapter).subscribe(
+      (response: any) => {
+        console.log('Capítulo actualizado con éxito', response);
+        this.toastr.success('Capítulo actualizado con éxito');
+        this.updateChapter = {
+          numeroCap: '',
+          titulo: '',
+          numeroArticulos: '',
+          palabrasClave: ''
+        };
+        this.getAllCapitulos();
+      },
+      (error: any) => {
+        console.error('Error al actualizar capítulo', error);
+        this.toastr.error('Error al actualizar capítulo');
+      }
+    );
+  }
+  
+  onDelete() {
+    const numeroCap = this.deleteChapter.numeroCap;
+    const verifyToken = this.verifyToken;
+
+    this.capituloService.deleteCapitulo(numeroCap, verifyToken).subscribe(
+      (response: any) => {
+        console.log('Capítulo eliminado con éxito', response);
+        this.toastr.success('Capítulo eliminado con éxito');
+        this.deleteChapter = { numeroCap: '' };
+        this.verifyToken = '';
+        this.getAllCapitulos();
+      },
+      (error: any) => {
+        console.error('Error al eliminar capítulo', error);
+        this.toastr.error('Error al eliminar capítulo');
+      }
+    );
+  }
+  
   
   verArticulos(numeroCap: string) {
     localStorage.setItem('numeroCap', numeroCap);

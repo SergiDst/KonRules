@@ -27,4 +27,18 @@ export class CapituloService {
 
     return this.http.post(this.apiUrl + '/capitulos', capitulo, { headers });
   }
+  updateCapitulo(numeroCap: number, chapter: any): Observable<any> {
+    
+    return this.http.put(`${this.apiUrl}/capitulos/${numeroCap}`, chapter);
+  }
+
+  deleteCapitulo(numeroCap: number, verifyToken: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/capitulos/${numeroCap}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'access-token': verifyToken
+      }),
+      body: { verifyToken }
+    });
+  }
 }
